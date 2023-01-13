@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -21,7 +21,7 @@
     "js-file-download": "^0.4.12",
     "lodash": "^4.17.21",
     "mini-svg-data-uri": "^1.4.4",
-    "next": "12.2.5",
+    "next": "^12.2.5",
     "next-connect": "^0.13.0",
     "numeral": "^2.0.6",
     "papaparse": "^5.3.2",

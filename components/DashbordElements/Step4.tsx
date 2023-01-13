@@ -29,10 +29,13 @@ function step4() {
         type: supplierType,
         supplier,
         partnumbers,
+        isCsv: true
       });
+      console.log(response)
       setDownloadableData(response.csv_data);
-      // console.log(response.failedData);
+      //  console.log(response.failedData);
       setSuccessData(response.LiveData.body.length);
+
       setFailedData(response.failedData);
       setLoading(false);
     } catch {
@@ -86,7 +89,7 @@ function step4() {
               Found: {numeral(successData).format('0,0')}
             </p>
             <p className="text-lg font-bold">
-              Not Found: {numeral(failedData.length).format('0,0')}
+              Not Found: {numeral(failedData?.length).format('0,0')}
             </p>
             {
               failedData?.length > 0 && <p className="py-4 text-red-600 flex">
@@ -109,8 +112,8 @@ function step4() {
             }
 
             <div>
-              {failedData.map((data: any, i: any) =>
-                <p className="ml-4" key={i}>{data}</p>
+              {failedData && failedData?.map((data: any, i: any) =>
+                <p className="ml-4" key={i}>{data.PArtname}</p>
               )}
             </div>
 

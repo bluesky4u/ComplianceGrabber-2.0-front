@@ -21,6 +21,44 @@ export default function DataTable({ head, body }: any) {
   //   }
   // }
 
+  const bodyTable = () => {
+    let arrayOfElements = []
+    for (let i in body) {
+      console.log(body[i], "-----------")
+      arrayOfElements.push(<>
+        <tr key={i} className="border-b hover:bg-odd-color bg-gray-50">
+          <th scope="row" className="py-4 px-6 font-medium text-gray-900 text-center">
+            {i + 1}
+          </th>
+          {
+            rowTable(body[i])
+
+          }
+        </tr></>)
+    }
+    return arrayOfElements
+  }
+
+
+  const rowTable = (col) => {
+    let loopArray = []
+    for (let j in col) {
+      console.log(col[j])
+      loopArray.push(
+        col[j] == "active" || col[j] == "ACTIVE" ?
+          <td key={j} className="py-4 m-20 px-6 bg-blue-200 text-blue-600 font-medium text-gray-900 text-center">
+            {col[j]}
+          </td> : col[j] == "OBSOLETE" ?
+            < td key={j} className="py-4 px-6 bg-red-200 text-red-600 font-medium text-gray-900 text-center" >
+              {col[j]}
+            </td > : < td key={j} className="py-4 px-6 font-medium text-gray-900 text-center" >
+              {col[j]}
+            </td >
+      )
+    }
+    return loopArray
+  }
+
   return (
     <div className="px-4 min-w-full sm:px-6 lg:px-8 relative">
       <div className="text-center py-2 font-medium">{body.length && `Total Rows : ${body.length}`}</div>
@@ -36,7 +74,7 @@ export default function DataTable({ head, body }: any) {
                   {
                     head.map((data: string, i: number) =>
                       <th key={i} scope="col" className=" text-center py-3 px-6">
-                        {data}
+                        {data.charAt(0).toUpperCase() + data.slice(1)}
                       </th>
                     )
                   }
@@ -46,21 +84,7 @@ export default function DataTable({ head, body }: any) {
               </thead>
               <tbody>
                 {
-                  body.map((col: any, i: number) => /*i >= displayCount * current && i < displayCount * (current + 1) &&*/
-                    <tr key={i} className="border-b hover:bg-odd-color bg-gray-50">
-                      <th scope="row" className="py-4 px-6 font-medium text-gray-900 text-center">
-                        {i + 1}
-                      </th>
-                      {
-
-                        col.map((item: any, j: number) =>
-                          <td key={j} className="py-4 px-6 font-medium text-gray-900 text-center">
-                            {item}
-                          </td>
-                        )
-                      }
-                    </tr>
-                  )
+                  bodyTable()
                 }
 
               </tbody>

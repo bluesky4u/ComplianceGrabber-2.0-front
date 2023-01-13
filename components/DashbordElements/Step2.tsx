@@ -71,9 +71,8 @@ function Step2({ nextStep }: stepProps) {
           className={`flex   justify-center rounded-lg   cursor-pointer`}
         >
           <div
-            className={` ${
-              isUploaded ? "bg-green-600" : "sidebar-color"
-            } text-white  font-poppins px-9 py-3 rounded-lg `}
+            className={` ${isUploaded ? "bg-green-600" : "sidebar-color"
+              } text-white  font-poppins px-9 py-3 rounded-lg `}
           >
             {isUploaded ? "Succesfully uploaded" : "Upload File"}
           </div>

@@ -1,3 +1,5 @@
+import { isArray } from "lodash";
+
 const config = {
   headers: {
     "Content-type": "application/json",
@@ -18,7 +20,16 @@ export function generateTableData(data: any) {
     // console.log(d)
     const d_arr = [];
     for (let h of head) {
-      d_arr.push(d[h]);
+      console.log(h)
+      if (isArray(d[h]) && d[h].length == 0) {
+        d_arr.push("Not Available");
+      }
+      else if (d[h]) {
+        d_arr.push(d[h]);
+      }
+      else {
+        d_arr.push("Not Available");
+      }
     }
     tabledata.body.push(d_arr);
   }
@@ -106,7 +117,15 @@ export function generateMouserTableData(data: any) {
         d[h] = d[h]?.UnitWeight || "not found";
       }
 
-      d_arr.push(d[h]);
+      if (isArray(d[h]) && d[h].length == 0) {
+        d_arr.push("Not Available");
+      }
+      else if (d[h]) {
+        d_arr.push(d[h]);
+      }
+      else {
+        d_arr.push("Not Available");
+      }
     }
     tabledata.body.push(d_arr);
   }
